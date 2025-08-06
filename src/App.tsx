@@ -19,7 +19,7 @@ import Profile from './pages/Profile';
 import Chat from './pages/Chat';
 
 // Import your local background image
-import AppBackgroundImage from './assets/hogwarts-hall-bg.jpg';
+import AppBackgroundImage from './assets/ffff.jpg';
 import Sidebar from './components/Sidebar';
 import Settings from './pages/Settings';
 import MusicPlayer from './components/MusicPlayer';
