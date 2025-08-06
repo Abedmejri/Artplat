@@ -1,0 +1,10 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* Set a solid, dark stone background color from our theme */
+  background-color: #817777; /* stone-dark */
+  color: #e8e0d0; /* parchment */
+}
