@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Artwork } from '../components/ArtworkCard'; // Reuse the interface
+import { type Artwork } from '../components/ArtworkCard';
 
 const Explore = () => {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
@@ -21,7 +21,7 @@ const Explore = () => {
       if (error) {
         console.error('Error fetching artworks:', error);
       } else {
-        setArtworks(data as Artwork[]);
+        setArtworks(data as unknown as Artwork[]);
       }
       setLoading(false);
     };

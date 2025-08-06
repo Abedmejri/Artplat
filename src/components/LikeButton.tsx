@@ -18,7 +18,8 @@ const LikeButton = ({ artworkId }: LikeButtonProps) => {
     const fetchLikes = async () => {
       setLoading(true);
       // Get the total number of likes for this artwork
-      const { count, error: countError } = await supabase
+      const { count } = await supabase
+
         .from('likes')
         .select('*', { count: 'exact', head: true })
         .eq('artwork_id', artworkId);
@@ -27,7 +28,7 @@ const LikeButton = ({ artworkId }: LikeButtonProps) => {
 
       // Check if the current user has liked this artwork
       if (session?.user) {
-        const { data: likeData, error: userLikeError } = await supabase
+        const { data: likeData } = await supabase
           .from('likes')
           .select('*')
           .eq('artwork_id', artworkId)

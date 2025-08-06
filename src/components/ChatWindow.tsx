@@ -33,7 +33,7 @@ const ChatWindow = ({ conversationId }: ChatWindowProps) => {
 
     // --- 1. FETCH INITIAL MESSAGES ---
     const fetchMessages = async () => {
-      const { data, error } = await supabase
+     const { data, error: _error } = await supabase
         .from('messages')
         .select('*, profiles(username, avatar_url)')
         .eq('conversation_id', conversationId)

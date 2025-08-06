@@ -1,7 +1,6 @@
 // src/hooks/useSession.tsx
-
-import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
-import { Session } from '@supabase/supabase-js';
+import { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
+import { type Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabaseClient';
 
 const SessionContext = createContext<Session | null>(null);

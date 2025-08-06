@@ -11,9 +11,10 @@ interface EventWithOrganizer {
   title: string;
   location: string | null;
   start_date: string;
+  // Change this to an array of objects
   profiles: {
     username: string | null;
-  } | null;
+  }[] | null;
 }
 
 // Animation variants for Framer Motion
@@ -97,9 +98,7 @@ const Events = () => {
                        <p className="font-body text-parchment text-xl">{event.location || 'Undisclosed'}</p>
                     </div>
                   </div>
-                  <p className="font-body text-parchment/70 mt-4 pt-4 border-t border-parchment/10">
-                    Organized by: <span className="italic">{event.profiles?.username || 'a secret host'}</span>
-                  </p>
+                  <p>Organized by: <span className="italic">{event.profiles?.[0]?.username || 'a secret host'}</span></p>
                 </div>
               </Link>
             </motion.div>

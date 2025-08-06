@@ -18,7 +18,7 @@ const RsvpButton = ({ eventId }: RsvpButtonProps) => {
     const fetchRsvpStatus = async () => {
       setLoading(true);
       // Get total number of attendees
-      const { count, error: countError } = await supabase
+ const { count } = await supabase
         .from('event_attendees')
         .select('*', { count: 'exact', head: true })
         .eq('event_id', eventId);
@@ -27,7 +27,7 @@ const RsvpButton = ({ eventId }: RsvpButtonProps) => {
 
       // Check if the current user is attending
       if (session?.user) {
-        const { data: rsvpData, error: userRsvpError } = await supabase
+       const { data: rsvpData } = await supabase
           .from('event_attendees')
           .select('*')
           .eq('event_id', eventId)

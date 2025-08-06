@@ -5,7 +5,7 @@ import { supabase } from '../lib/supabaseClient';
 import { useSession } from '../hooks/useSession';
 import { useProfile } from '../hooks/useProfile';
 import ArtworkUploadForm from '../components/ArtworkUploadForm';
-import ArtworkCard, { Artwork } from '../components/ArtworkCard';
+import ArtworkCard, { type Artwork } from '../components/ArtworkCard';
 import CreateEventModal from '../components/CreateEventModal';
 import { motion } from 'framer-motion';
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
         setLoadingArt(true);
         const { data, error } = await supabase.from('artworks').select(`id, title, media_url, profiles(username)`).eq('user_id', session.user.id).order('created_at', { ascending: false });
         if (error) console.error("Error fetching user's artworks:", error);
-        else setMyArtworks(data as Artwork[]);
+        else setMyArtworks(data as unknown as Artwork[]);
         setLoadingArt(false);
       })();
       // Fetch events

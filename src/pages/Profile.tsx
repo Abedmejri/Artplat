@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useSession } from '../hooks/useSession';
-import ArtworkCard, { Artwork } from '../components/ArtworkCard';
+import ArtworkCard, { type Artwork } from '../components/ArtworkCard';
 import { motion } from 'framer-motion';
 
 // Define the shape of the profile data we expect to fetch
@@ -39,7 +39,7 @@ const Profile = () => {
       // 2. Fetch the artworks for that profile's ID
       const { data: artworksData, error: artworksError } = await supabase.from('artworks').select(`id, title, media_url, profiles(username)`).eq('user_id', profileData.id).order('created_at', { ascending: false });
       if (artworksError) { setError('Could not load artworks for this artist.'); } 
-      else { setArtworks(artworksData as Artwork[]); }
+      else { setArtworks(artworksData as unknown as Artwork[]); }
       setLoading(false);
     };
     fetchProfileData();

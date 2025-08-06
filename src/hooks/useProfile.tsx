@@ -1,6 +1,5 @@
 // src/hooks/useProfile.tsx
-
-import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
+import { createContext, useState, useEffect, useContext, type ReactNode } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useSession } from './useSession';
 
@@ -11,6 +10,8 @@ interface Profile {
   website: string | null;
   bio: string | null;
   can_create_events: boolean; // Our new permission flag!
+donation_url: string | null;
+  
 }
 
 const ProfileContext = createContext<Profile | null>(null);
@@ -22,7 +23,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (session?.user?.id) {
       const fetchProfile = async () => {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from('profiles')
           .select('*')
           .eq('id', session.user.id)

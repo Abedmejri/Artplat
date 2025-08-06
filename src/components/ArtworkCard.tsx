@@ -3,7 +3,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-// Define the shape of our artwork data, including the artist's profile
 export interface Artwork {
     id: number;
     title: string;
@@ -14,29 +13,26 @@ export interface Artwork {
 }
 
 const ArtworkCard = ({ artwork }: { artwork: Artwork }) => {
-  const artistUsername = artwork.profiles?.username || 'Anonymous';
+  const artistUsername = artwork.profiles?.username || 'A Mysterious Sorcerer';
 
   return (
     <Link to={`/artwork/${artwork.id}`} className="block group">
       <motion.div 
-        whileHover={{ y: -8 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-        className="w-full"
+        whileHover={{ scale: 1.05, y: -5, boxShadow: "0 0 25px 5px rgba(0, 242, 234, 0.3)" }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="bg-stone-dark/50 p-3 rounded-lg border border-parchment/10"
       >
-        {/* The Image Container */}
-        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-stone-200">
-            <img 
-              src={artwork.media_url} 
-              alt={artwork.title} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-            />
+        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md">
+          <img 
+            src={artwork.media_url} 
+            alt={artwork.title} 
+            className="w-full h-full object-cover" 
+          />
         </div>
-        
-        {/* The Museum Label */}
-        <div className="mt-4">
-          <h3 className="text-base font-medium text-stone-900 truncate" title={artwork.title}>{artwork.title}</h3>
-          <p className="text-sm text-stone-500 mt-1">
-            By {artistUsername}
+        <div className="mt-4 text-center">
+          <h3 className="font-heading text-xl text-parchment truncate" title={artwork.title}>{artwork.title}</h3>
+          <p className="text-sm text-parchment/60 mt-1">
+            By <span className="italic">{artistUsername}</span>
           </p>
         </div>
       </motion.div>

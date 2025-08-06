@@ -33,7 +33,7 @@ const Chat = () => {
   useEffect(() => {
     // Fetch initial chat history
     const fetchMessages = async () => {
-      const { data, error } = await supabase
+     const { data, error: _error } = await supabase
         .from('messages')
         .select('*, profiles(username, avatar_url)')
         .order('created_at', { ascending: true });

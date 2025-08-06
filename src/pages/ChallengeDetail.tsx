@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
-import ArtworkCard, { Artwork } from '../components/ArtworkCard';
+import ArtworkCard, { type Artwork } from '../components/ArtworkCard';
 
 interface Challenge {
   title: string;
@@ -40,7 +40,7 @@ const ChallengeDetail = () => {
         console.error('Error fetching submissions:', error);
       } else if (submissionData) {
         // The data is nested, so we need to extract it
-        const artworkList = submissionData.map(s => s.artworks).filter(Boolean) as Artwork[];
+        const artworkList = submissionData.map(s => s.artworks).filter(Boolean) as unknown as Artwork[];
         setSubmissions(artworkList);
       }
       setLoading(false);
